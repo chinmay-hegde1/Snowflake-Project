@@ -55,7 +55,7 @@ def Insert(ctx, fileName):
     try:
         cs.execute("commit;")
         cs.execute("Create temporary table Auth_2(AUTHOR_UID number(2,0), FIRST_NAME varchar(30) not null, "
-                   "MIDDLE_NAME varchar(30), LAST_NAME varchar(30) not null);")
+                   "MIDDLE_NAME varchar(30), LAST_NAME varchar(30) not null)")
         total = pd.read_csv(fileName, sep='^', header=0, index_col=False)
         total.reset_index(drop=True, inplace=True)
         for i in total.values:
