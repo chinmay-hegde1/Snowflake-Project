@@ -70,7 +70,7 @@ def Insert(ctx, fileName):
         print(str(succcess), str(nchuncks), str(nrows), sep="\t-")
         cs.execute("Create Table if NOT EXISTS Author_Dup as Select Distinct * from Author order by AUTHOR_UID;")
         cs.execute("Alter table Author_Dup SWAP WITH Author;")
-        cs.execute("DROP TABLE IF EXISTS Author_Dup;")
+        cs.execute("DROP TABLE IF EXISTS Author_Dup")
     except snowflake.connector.errors.ProgrammingError as db_error:
         cs.execute("Rollback;")
         print("There is an Error", db_error.errno)
