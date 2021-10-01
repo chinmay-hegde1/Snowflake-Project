@@ -73,7 +73,8 @@ def Insert(ctx, fileName):
         print(str(succcess), str(nchuncks), str(nrows), sep="\t-")
         cs.execute("Merge into Author_SCD using Author_Temp_1 "
                    "on Author_Temp_1.Author_UID = Author_SCD.AUTHOR_UID "
-                   "when matched AND (Author_SCD.FIRST_NAME <> Author_Temp_1.FIRST_NAME "
+                   "when matched AND AUTHOR_SCD2.END_DATE = DATE('9999-12-31') AND"
+                   "(Author_SCD.FIRST_NAME <> Author_Temp_1.FIRST_NAME "
                    "OR Author_SCD.MIDDLE_NAME <> Author_Temp_1.MIDDLE_NAME "
                    "OR Author_SCD.LAST_NAME <> Author_Temp_1.LAST_NAME)"
                    "then update set Author_SCD.END_DATE=current_date();")
